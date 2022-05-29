@@ -8,7 +8,7 @@ All the details of the movies (title, genre, runtime, rating, poster, etc) are f
 ## Important Links:
 GitHub Repository URL: https://github.com/kshitiz-patel/Microsoft-Engage-Algorithms <br/>
 Website URL: https://nmovies-engage2022.herokuapp.com/<br/>
-Video Demo: []<br/>
+Video Demo: https://youtu.be/DvFyBJbeyoE<br/>
 
 ## Functions & Features:
 This is a single page web app made using AJAX request which on loading lands on the index.html where the user will find a search bar inbuilt with **manual as well as voice based search** to search his/her favorite movie.
@@ -76,4 +76,5 @@ py main.py
 http://127.0.0.1:5000/
 ```
 
-## Scope of Improvements:
+
+
