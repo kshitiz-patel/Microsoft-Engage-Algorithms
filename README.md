@@ -25,7 +25,11 @@ This is a single page web app made usinf AJAX request which loading lands on the
   ```
     $ git clone 
   ```
-#### 2. Setting up the Files
+  
+#### 2. Setting up the files
+* To make the app work the followinf files are also required to donwlosded and pasted inthe root directotry. this is because of the large file size.
+File 01: [)
+File 02: [)
 
 #### 3. Install Requirements.txt
 * Install all the libraries mentioned in the [requirements.txt](https://github.com/kishan0725/Movie-Recommendation-System-with-Sentiment-Analysis/blob/master/requirements.txt)
@@ -34,7 +38,19 @@ This is a single page web app made usinf AJAX request which loading lands on the
 $ pip install -r requirements.txt
 ```
 
+#### 4. Run the files locally
+* Open your terminal/command prompt from the project directory and run the file `main.py` by executing the following command
 
+```
+py main.py
+```
+
+#### 5. Open terminal & Run Commands
+* Now its done, just Go to your browser and type the following URL in the address bar and you are good to go.
+
+```
+$ http://127.0.0.1:5000/
+```
 
 ### Scope of Improvements:
 
