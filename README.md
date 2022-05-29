@@ -11,8 +11,23 @@ Website URL: []
 Video Demo: []
 
 ### Functions & Features:
+This is a single page web app made usinf AJAX request which loading lands on the index.html where the user will find a search bar inbuit with **manual as well as voice based search 
+
 ### Architecture of the Web App:
+
 ### Technologies Used:
+
 ### Installation/Environment Setup:
+#### 1. Clone App
+  
+  * Write the following command and press enter.
+  
+  ```
+    $ git clone 
+  ```
+
+
 ### Scope of Improvements:
+
 ### Resources:
+
