@@ -26,6 +26,7 @@ This is a single page web app made usinf AJAX request which loading lands on the
 #### IDE: <img alt="Visual Studio Code" src="https://img.shields.io/badge/Visual%20Studio%20Code-0078d7.svg?style=for-the-badge&logo=visual-studio-code&logoColor=white"/> <img alt="PyCharm" src="https://img.shields.io/badge/pycharm-143?style=for-the-badge&logo=pycharm&logoColor=black&color=black&labelColor=green"/> 
 
 #### Hosting: <img alt="Heroku" src="https://img.shields.io/badge/heroku-%23430098.svg?style=for-the-badge&logo=heroku&logoColor=white"/>
+#### API: TMDB
 
 ### Installation/Environment Setup:
 #### 1. Clone App
@@ -63,11 +64,3 @@ http://127.0.0.1:5000/
 ```
 
 ### Scope of Improvements:
-
-### Resources:
- #### Data Source
- TMDB API: 
- Kaggle Datasets: 
- File 01: [)<br/>
- File 02: [)<br/>
-
