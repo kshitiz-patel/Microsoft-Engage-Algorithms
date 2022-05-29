@@ -62,14 +62,14 @@ Project Folder Structure: https://drive.google.com/file/d/1ftzOx2RZTdebGwbjsWHHw
 pip install -r requirements.txt
 ```
 
-#### 4. Run the files locally
+#### 4. Open terminal & Run Commands
 * Open your terminal/command prompt from the project directory and run the file `main.py` by executing the following command
 
 ```
 py main.py
 ```
 
-#### 5. Open terminal & Run Commands
+#### 5. Open the browser & search the URL
 * Now its done, just Go to your browser and type the following URL in the address bar and you are good to go.
 
 ```
