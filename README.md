@@ -35,7 +35,7 @@ File 02: [)
 * Install all the libraries mentioned in the [requirements.txt](https://github.com/kishan0725/Movie-Recommendation-System-with-Sentiment-Analysis/blob/master/requirements.txt)
 
 ```
-$ pip install -r requirements.txt
+pip install -r requirements.txt
 ```
 
 #### 4. Run the files locally
@@ -49,10 +49,15 @@ py main.py
 * Now its done, just Go to your browser and type the following URL in the address bar and you are good to go.
 
 ```
-$ http://127.0.0.1:5000/
+http://127.0.0.1:5000/
 ```
 
 ### Scope of Improvements:
 
 ### Resources:
+ #### Data Source
+ TMDB API: 
+ Kaggle Datasets: 
+ File 01: [)
+ File 02: [)
 
