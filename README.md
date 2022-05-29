@@ -11,16 +11,20 @@ Website URL: []<br/>
 Video Demo: []<br/>
 
 ## Functions & Features:
-This is a single page web app made usinf AJAX request which loading lands on the index.html where the user will find a search bar inbuit with manual as well as voice based search
+This is a single page web app made using AJAX request which on loading lands on the index.html where the user will find a search bar inbuit with **manual as well as voice based search** to search his/her favorite movie.
 ### Recommendation System:
 
 ### Auto-Search Complete:
+This Auto-search feature is built using JavaScript, which basically takes the input from the user and searches it in a movie array and shows the related items to the user based upon the query entered.
 
-### Voice based Search: 
+### Voice based Search:
+It Uses the **Web Speech API** to perform the Speech to Text function which then gives back the text in the input field as per the voice instruction given by the user. To enable the voice recognition just press the mic button in the search bar and speak out want you want to watch.
 
 ### Random Movie Suggestions:
+Sometimes users want to watch something but don’t know what to watch. So here is the solution by just pressing the **Surprise Me** button at the top right corner of the navigation bar the user will get a random movie suggestion which is done through a random function.
 
 ### Sentiment Analysis of Review:
+Initially, the reviews are fetched from IMDb Database using the movie ID, and then using the Naive Bayes Model the reviews are analyzed whether they are positive or negative. For a positive review, it assigns 1 to the review and assigns 0 to a negative review then it’s displayed to the user using JavaScript ate the frontend.
 
 ## Architecture of the Web App:
 <img src="https://drive.google.com/file/d/1F7S3jb5C3zuWue3nUHpX2y66NLaAVQ3z/vie">
