@@ -11,22 +11,25 @@ Website URL: https://nmovies-engage2022.herokuapp.com/<br/>
 Video Demo: []<br/>
 
 ## Functions & Features:
-This is a single page web app made using AJAX request which on loading lands on the index.html where the user will find a search bar inbuit with **manual as well as voice based search** to search his/her favorite movie.
-### Recommendation System:
+This is a single page web app made using AJAX request which on loading lands on the index.html where the user will find a search bar inbuilt with **manual as well as voice based search** to search his/her favorite movie.
+### 1. Recommendation System:
+Content-based filtering uses item features to recommend other items like what the user likes, based on their previous actions or explicit feedback.
+<br>
+Using cosine distance between the vectors of the item a similarity score is generated which helps in recommending the content.
 
-### Auto-Search Complete:
+### 2. Auto-Search Complete:
 This Auto-search feature is built using JavaScript, which basically takes the input from the user and searches it in a movie array and shows the related items to the user based upon the query entered.
 
-### Voice based Search:
+### 3. Voice based Search:
 It Uses the **Web Speech API** to perform the Speech to Text function which then gives back the text in the input field as per the voice instruction given by the user. To enable the voice recognition just press the mic button in the search bar and speak out want you want to watch.
 
-### Random Movie Suggestions:
+### 4. Random Movie Suggestions:
 Sometimes users want to watch something but don’t know what to watch. So here is the solution by just pressing the **Surprise Me** button at the top right corner of the navigation bar the user will get a random movie suggestion which is done through a random function.
 
-### Sentiment Analysis of Review:
+### 5. Sentiment Analysis of Review:
 Initially, the reviews are fetched from IMDb Database using the movie ID, and then using the Naive Bayes Model the reviews are analyzed whether they are positive or negative. For a positive review, it assigns 1 to the review and assigns 0 to a negative review then it’s displayed to the user using JavaScript ate the frontend.
 
-## Architecture of the Web App:
+## 6. Architecture of the Web App:
 Image File Link: https://drive.google.com/file/d/1F7S3jb5C3zuWue3nUHpX2y66NLaAVQ3z/view
 
 ## Technologies Used:
