@@ -11,7 +11,16 @@ Website URL: []<br/>
 Video Demo: []<br/>
 
 ### Functions & Features:
-This is a single page web app made usinf AJAX request which loading lands on the index.html where the user will find a search bar inbuit with **manual as well as voice based search 
+This is a single page web app made usinf AJAX request which loading lands on the index.html where the user will find a search bar inbuit with **manual as well as voice based search
+*Recommendation System:
+
+*Auto-Search Complete:
+
+*Voice based Search: 
+
+*Random Movie Suggestions:
+
+*Sentiment Analysis of Review:
 
 ### Architecture of the Web App:
 
