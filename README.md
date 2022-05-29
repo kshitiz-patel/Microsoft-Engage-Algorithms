@@ -27,7 +27,7 @@ Sometimes users want to watch something but don’t know what to watch. So here 
 Initially, the reviews are fetched from IMDb Database using the movie ID, and then using the Naive Bayes Model the reviews are analyzed whether they are positive or negative. For a positive review, it assigns 1 to the review and assigns 0 to a negative review then it’s displayed to the user using JavaScript ate the frontend.
 
 ## Architecture of the Web App:
-<img src="https://drive.google.com/file/d/1F7S3jb5C3zuWue3nUHpX2y66NLaAVQ3z/vie">
+Image File Link: https://drive.google.com/file/d/1F7S3jb5C3zuWue3nUHpX2y66NLaAVQ3z/view
 
 ## Technologies Used:
 #### Frontend Technologies: <img alt="HTML5" src="https://img.shields.io/badge/html5-%23E34F26.svg?style=for-the-badge&logo=html5&logoColor=white"/> <img alt="CSS3" src="https://img.shields.io/badge/css3-%231572B6.svg?style=for-the-badge&logo=css3&logoColor=white"/> <img alt="Bootstrap 5" src="https://img.shields.io/badge/bootstrap-%23563D7C.svg?style=for-the-badge&logo=bootstrap&logoColor=white"/> <img alt="JavaScript" src="https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E"/> <img alt="jquery" src="https://img.shields.io/badge/jquery-%230769AD.svg?style=for-the-badge&logo=jquery&logoColor=white"/>
@@ -45,16 +45,12 @@ Initially, the reviews are fetched from IMDb Database using the movie ID, and th
 ## Installation/Environment Setup:
 #### 1. Clone App
   
-  * Write the following command and press enter.
-  
-  ```
-    $ git clone 
-  ```
+  * Clone or download this repository to your local machine.
   
 #### 2. Setting up the files
-* To make the app work the following files are also required to be downloaded and pasted in the root directotry. This is because of the large file size.
-https://drive.google.com/drive/folders/1VyfED1hUGwxbC46Nc4tGlx54vBYTOl5p?usp=sharing
-
+* To make the app work the following files are also required to be downloaded and pasted in the root directotry. This is because of the large file size.<br>
+File Download Link: https://drive.google.com/drive/folders/1VyfED1hUGwxbC46Nc4tGlx54vBYTOl5p?usp=sharing<br>
+Project Folder Structure: https://drive.google.com/file/d/1ftzOx2RZTdebGwbjsWHHwSUepk3GM1s5/view?usp=sharing
 
 #### 3. Install Requirements.txt
 * Install all the libraries mentioned in the [requirements.txt](https://github.com/kishan0725/Movie-Recommendation-System-with-Sentiment-Analysis/blob/master/requirements.txt)
