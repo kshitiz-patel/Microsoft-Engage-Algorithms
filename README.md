@@ -6,7 +6,7 @@ Where similarity score is a numerical value ranges between zero to one which hel
 All the details of the movies (title, genre, runtime, rating, poster, etc) are fetched using an API by TMDB.
 
 ### Important Links:
-GitHub Repository URL: [https://github.com/kshitiz-patel/Microsoft-Engage-Algorithms)
+GitHub Repository URL: https://github.com/kshitiz-patel/Microsoft-Engage-Algorithms <br/>
 Website URL: []
 Video Demo: []
 
