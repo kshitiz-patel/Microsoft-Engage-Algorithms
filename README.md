@@ -1,30 +1,30 @@
-# Microsoft Engage 2022: Algorithms <br/>
-# NMovies: A Content-Based Movie Recommender System using Cosine Similarity
+# Microsoft Engage 2022: Algorithms 
+## NMovies: A Content-Based Movie Recommender System using Cosine Similarity
 ### Overview:
 **NMovies:** An online movie recommender app based on the concept of **Cosine Similarity**. It basically generates similarity scores based upon those scores movies are suggested to the user. 
 Where similarity score is a numerical value ranges between zero to one which helps to determine how much two items are like each other on a scale of zero to one. This similarity score is obtained by measuring the similarity between the text details of both items. So, the similarity score is the measure of similarity between given text details of two items. This can be done by cosine-similarity.
 All the details of the movies (title, genre, runtime, rating, poster, etc) are fetched using an API by TMDB.
 
-### Important Links:
+## Important Links:
 GitHub Repository URL: https://github.com/kshitiz-patel/Microsoft-Engage-Algorithms <br/>
 Website URL: []<br/>
 Video Demo: []<br/>
 
-### Functions & Features:
-This is a single page web app made usinf AJAX request which loading lands on the index.html where the user will find a search bar inbuit with **manual as well as voice based search
-*Recommendation System:
+## Functions & Features:
+This is a single page web app made usinf AJAX request which loading lands on the index.html where the user will find a search bar inbuit with manual as well as voice based search
+### Recommendation System:
 
-*Auto-Search Complete:
+### Auto-Search Complete:
 
-*Voice based Search: 
+### Voice based Search: 
 
-*Random Movie Suggestions:
+### Random Movie Suggestions:
 
-*Sentiment Analysis of Review:
+### Sentiment Analysis of Review:
 
-### Architecture of the Web App:
+## Architecture of the Web App:
 
-### Technologies Used:
+## Technologies Used:
 #### Frontend Technologies: <img alt="HTML5" src="https://img.shields.io/badge/html5-%23E34F26.svg?style=for-the-badge&logo=html5&logoColor=white"/> <img alt="CSS3" src="https://img.shields.io/badge/css3-%231572B6.svg?style=for-the-badge&logo=css3&logoColor=white"/> <img alt="Bootstrap 5" src="https://img.shields.io/badge/bootstrap-%23563D7C.svg?style=for-the-badge&logo=bootstrap&logoColor=white"/> <img alt="JavaScript" src="https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E"/> <img alt="jquery" src="https://img.shields.io/badge/jquery-%230769AD.svg?style=for-the-badge&logo=jquery&logoColor=white"/>
 
 #### Backend Technologies: <img alt="Python" src="https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54"/> <img alt="Flask" src="https://img.shields.io/badge/flask-%23000.svg?style=for-the-badge&logo=flask&logoColor=white"/> 
@@ -37,7 +37,7 @@ This is a single page web app made usinf AJAX request which loading lands on the
 #### Hosting: <img alt="Heroku" src="https://img.shields.io/badge/heroku-%23430098.svg?style=for-the-badge&logo=heroku&logoColor=white"/>
 #### API: TMDB
 
-### Installation/Environment Setup:
+## Installation/Environment Setup:
 #### 1. Clone App
   
   * Write the following command and press enter.
@@ -72,4 +72,4 @@ py main.py
 http://127.0.0.1:5000/
 ```
 
-### Scope of Improvements:
+## Scope of Improvements:
