@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v6.0.0-beta1/css/all.css" />
+
+    <!-- bootstrap 5 css cdn -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='style.css') }}">
+
+    <title>NMovies – Watch TV Shows Online, Watch Movies Online</title>
+
+    <style>
+        .header-index {
+            display: none !important;
+        }
+    </style>
+
+</head>
+
+<body id="content">
+
+    <!-- to display incase if there is no such movie exists in the database -->
+    <div class="fail">
+        <center>
+            <h3>Sorry! The movie you requested is not in our database.
+                Please check the spelling or try with other movies!</h3>
+        </center>
+    </div>
+
+    <!-- header start -->
+    <header class="header-recommend d-flex justify-content-center" style=" background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 10%, rgba(0, 0, 0, 1)), linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('{{backdrop}}'); height: 100vh;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;">
+        <div class="container text-white">
+
+            <div class="my-3">
+                <nav class="navbar navbar-light">
+                    <div class="container">
+                        <a class="navbar-brand" href="/">
+                            <img src="{{ url_for('static',filename='nmovies-logo.png') }}" alt="" width="155">
+                        </a>
+                        <div class="d-flex">
+                            <button class="btn btn-light border-0 rounded-0 bg-glass fw-bold me-3 px-3 py-2"
+                                onclick="randomMovie(0, 220)"><i class="fa-solid fa-shuffle"></i> <span
+                                    class="hidden">Suprise Me</span></button>
+
+                            <!-- button to redirect to search bar -->
+                            <button class="btn btn-danger rounded-0 fw-bold px-3 py-2" style="background-color: red;"
+                                onclick="location.href='/'"><i class="fa fa-magnifying-glass"></i> <span
+                                    class="hidden">Search</span></button>
+                        </div>
+                    </div>
+                </nav>
+            </div>
+
+            <!-- info about the movie searched by the user -->
+            <div class="row py-lg-5">
+                <div class="col-md-4 d-flex justify-content-center">
+                    <img src="{{poster}}" alt="" class="movie-poster hidden">
+                </div>
+                <div class="col-md-6">
+                    <h1 class="movie-title">{{title}}</h1>
+                    <div class="movie-details mb-3">
+                        <ul class="movie-detail-items">
+                            <li class="movie-detail-list-items me-2"><i class="fa-brands fa-imdb"></i> {{vote_average}}
+                            </li>
+                            <li class="movie-detail-list-items me-2">{{runtime}}</li>
+                            <li class="movie-detail-list-items me-2">{{release_date}} <i
+                                    class="fa-solid fa-high-definition ml-2"></i>
+                            </li>
+                        </ul>
+                    </div>
+                    <p class="fw-bold fs-6">{{overview}}</p>
+                    <h5><b>Genre:</b> {{genres}}</h5>
+                    <h5><b>Status:</b> {{status}}</h5>
+                    <div class="mt-4">
+                        <button class="btn btn-light border-0 rounded-0 bg-glass fw-bold me-3 px-3 py-2"
+                            type="submit"><i class="fa-solid fa-circle-play me-1"></i> Play Now</button>
+                        <button class="btn btn-light border-0 rounded-0 bg-glass fw-bold me-3 px-3 py-2"
+                            type="submit"><i class="fa-solid fa-arrow-down-to-line me-1"></i> Download</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section>
+        <div class="container">
+            <div class="row mt-4 mb-4">
+
+                <!-- buttons to display requied deatails -->
+                <div class="col-12 d-flex justify-content-center">
+                    <button type="button" target="1"
+                        class="btn btn-outline-light showSingle rounded-0 border-0 fs-4 p-1 px-2 me-2"><b>Related</b></button>
+                    <button type="button" target="2"
+                        class="btn btn-outline-light showSingle rounded-0 border-0 fs-4 ml-5 p-1 px-2"><b>Details</b></button>
+                </div>
+            </div>
+
+            <!-- recommended movies section -->
+            <div id="div1" class="targetDiv">
+                <div class="row my-5">
+
+                    {% if movie_cards|length > 1 %}
+
+                    <h4 class="text-white">Recommended Movies</h4>
+                    <h6 style="color: #757575;"><b>Details from</b> TMDb</h6>
+                    <div class="nav-scroller">
+                        <nav class="nav">
+                            <ul class="movie-cards-list">
+
+                                {% for poster, title in movie_cards.items() if not movie_cards.hidden %}
+
+                                <li class="movie-cards-images-items">
+                                    <img src="{{poster}}" alt="{{title}}" class="movie-cards-images">
+                                    <div class="cards-overlay" title="{{title}}" onclick="recommendcard(this)">
+                                        <div class="cards-overlay-text">Watch Now</div>
+                                    </div>
+                                </li>
+
+                                {% endfor %}
+
+                            </ul>
+                        </nav>
+                    </div>
+
+                    {% endif %}
+
+                </div>
+            </div>
+
+            <!-- cast & crew section -->
+            <div id="div2" class="targetDiv" style="display: none;">
+                <div class="row my-5">
+
+                    {% if casts|length > 1 %}
+
+                    <h4 class="text-white">Cast & Crew</h4>
+                    <h6 style="color: #757575;"><b>Details from</b> TMDb</h6>
+                    <div class="nav-scroller">
+                        <nav class="nav">
+                            <ul class="movie-cards-list">
+
+                                {% for name, details in casts.items() if not casts.hidden %}
+
+                                <li class="movie-cards-images-items">
+                                    <img src="{{details[2]}}" alt="{{name|title}}" class="movie-cards-images">
+                                    <div class="cards-overlay">
+                                        <div class="cards-overlay-text">{{name|title}}</div>
+                                        <div class="cards-overlay-text">{{details[1]|title}}</div>
+                                    </div>
+                                </li>
+
+                                {% endfor %}
+
+                            </ul>
+                        </nav>
+                    </div>
+
+                    {% endif %}
+
+                </div>
+
+                <!-- comment section  -->
+                <div class="row d-flex justify-content-center align-items-center mt-1 mb-5 ">
+                    <div class="col-md-9 mx-auto">
+
+                        {% if reviews %}
+
+                        <h4 class="text-white m-3 mb-4 ml-5">Comments & Reviews</h4>
+
+                        {% for review, status in reviews.items() if not reviews.hidden %}
+
+                        <div class="card border-0 mb-3  mx-3" style="max-width: 70rem;">
+                            <div class="card-header border-0 rounded-0 " style="background-color:#2A2A2A">
+                                <h4 style="color: #757575;">Anonymous User</h4>
+                                <h6 style="color: #757575;"> Review: {{status}}
+                                    {% if status =='Good' %}
+                                    <i class="fa-solid fa-face-smile"></i>
+                                    {% else %}
+                                    <i class="fa-solid fa-face-frown"></i>
+                                    {% endif %}</h>
+                            </div>
+                            <div class="card-body">
+                                <p class="card-text">{{review}}</p>
+                            </div>
+                        </div>
+
+                        {% endfor %}
+
+                        {% endif %}
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+      <!-- different javascripts for search bar, recommendation & bootstrap 5 also -->
+
+    <script type="text/javascript" src="{{url_for('static', filename='searchWrapper.js')}}"></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script type="text/javascript" src="{{url_for('static', filename='recommend.js')}}"></script>
+
+    <!-- script to show or display the required details about the movie search by the user -->
+    <script>
+        jQuery(function () {
+            jQuery('#showall').click(function () {
+                jQuery('.targetDiv').show();
+            });
+            jQuery('.showSingle').click(function () {
+                jQuery('.targetDiv').hide();
+                jQuery('#div' + $(this).attr('target')).show();
+            });
+        });
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
+        integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous">
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
+        integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous">
+    </script>
+
+</body>
+
+</html>
