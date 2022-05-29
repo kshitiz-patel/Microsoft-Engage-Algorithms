@@ -7,8 +7,8 @@ All the details of the movies (title, genre, runtime, rating, poster, etc) are f
 
 ### Important Links:
 GitHub Repository URL: https://github.com/kshitiz-patel/Microsoft-Engage-Algorithms <br/>
-Website URL: []
-Video Demo: []
+Website URL: []<br/>
+Video Demo: []<br/>
 
 ### Functions & Features:
 This is a single page web app made usinf AJAX request which loading lands on the index.html where the user will find a search bar inbuit with **manual as well as voice based search 
@@ -38,8 +38,8 @@ This is a single page web app made usinf AJAX request which loading lands on the
   
 #### 2. Setting up the files
 * To make the app work the followinf files are also required to donwlosded and pasted inthe root directotry. this is because of the large file size.
-File 01: [)
-File 02: [)
+File 01: [)<br/>
+File 02: [)<br/>
 
 #### 3. Install Requirements.txt
 * Install all the libraries mentioned in the [requirements.txt](https://github.com/kishan0725/Movie-Recommendation-System-with-Sentiment-Analysis/blob/master/requirements.txt)
@@ -68,6 +68,6 @@ http://127.0.0.1:5000/
  #### Data Source
  TMDB API: 
  Kaggle Datasets: 
- File 01: [)
- File 02: [)
+ File 01: [)<br/>
+ File 02: [)<br/>
 
