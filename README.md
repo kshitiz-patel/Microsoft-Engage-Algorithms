@@ -25,6 +25,15 @@ This is a single page web app made usinf AJAX request which loading lands on the
   ```
     $ git clone 
   ```
+#### 2. Setting up the Files
+
+#### 3. Install Requirements.txt
+* Install all the libraries mentioned in the [requirements.txt](https://github.com/kishan0725/Movie-Recommendation-System-with-Sentiment-Analysis/blob/master/requirements.txt)
+
+```
+$ pip install -r requirements.txt
+```
+
 
 
 ### Scope of Improvements:
