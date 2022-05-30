@@ -29,7 +29,7 @@ Sometimes users want to watch something but don’t know what to watch. So here 
 ### 5. Sentiment Analysis of Review:
 Initially, the reviews are fetched from IMDb Database using the movie ID, and then using the Naive Bayes Model the reviews are analyzed whether they are positive or negative. For a positive review, it assigns 1 to the review and assigns 0 to a negative review then it’s displayed to the user using JavaScript ate the frontend.
 
-## 6. Architecture of the Web App:
+## Architecture of the Web App:
 Image File Link: https://drive.google.com/file/d/1F7S3jb5C3zuWue3nUHpX2y66NLaAVQ3z/view
 
 ## Technologies Used:
