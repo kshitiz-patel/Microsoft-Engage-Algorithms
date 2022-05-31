@@ -69,7 +69,6 @@ a {
     width: 100%;
     outline: none;
     border: none;
-    border-radius: 5px;
     padding: 0 60px 0 20px;
     font-size: 18px;
     box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.1);
@@ -320,7 +319,8 @@ li:hover .cards-overlay {
 
     .header-recommend,
     .header-index {
-        height: fit-content;
+        height: 100% !important;
+        margin-bottom: 5vh;
     }
 
     .parallex-backdrop {
