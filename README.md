@@ -17,7 +17,7 @@ Content-based filtering uses item features to recommend other items like what th
 <br>
 Using cosine distance between the vectors of the item a similarity score is generated which helps in recommending the content.
 
-### 2. Auto-Search Complete:
+### 2. Auto-Complete Search:
 This Auto-search feature is built using JavaScript, which basically takes the input from the user and searches it in a movie array and shows the related items to the user based upon the query entered.
 
 ### 3. Voice based Search:
