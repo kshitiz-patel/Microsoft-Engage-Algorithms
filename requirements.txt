@@ -25,8 +25,8 @@ requests==2.23.0
 scikit-learn
 scipy
 six==1.16.0
-sklearn==0.0.post1
-soupsieve==2.3.2.post1
+sklearn
+soupsieve
 threadpoolctl==3.1.0
 tmdbv3api==1.6.1
 tqdm==4.64.1
