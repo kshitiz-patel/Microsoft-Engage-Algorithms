@@ -15,7 +15,7 @@ lxml==4.9.2
 MarkupSafe==2.0.1
 nltk==3.5
 numpy
-pandas==1.5.3
+pandas
 pickleshare==0.7.5
 pyrsistent==0.19.3
 python-dateutil==2.8.2
