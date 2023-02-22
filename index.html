@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="icon" type="image/x-icon" href="{{ url_for('static',filename='favicon.png') }}">
+
+  <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v6.0.0-beta1/css/all.css" />
+
+  <!-- bootstrap 5 css cdn -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='style.css') }}">
+
+  <title>NMovies – Watch TV Shows Online, Watch Movies Online</title>
+
+  <!-- array from where the search bar shows suggestions, make sure that this script should be written in same order-->
+  <script type="text/javascript">
+    var films = {{suggestions|tojson}};
+  </script>
+
+  <!-- array from where random movies get suggested -->
+  <script src="{{url_for('static', filename='randomMovies.js')}}"></script>
+
+  <!-- scrict for voice recognition -->
+  <script type="text/javascript" src="{{url_for('static', filename='voiceRecognition.js')}}" defer></script>
+
+  <style>
+    .header-index {
+      background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 10%, rgba(0, 0, 0, 1)), linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url("https://www.themoviedb.org/t/p/original/rcUcYzGGicDvhDs58uM44tJKB9F.jpg");
+      height: 100vh;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+    }
+  </style>
+
+</head>
+
+<body>
+
+  <header class="header-index d-flex justify-content-center">
+    <div class="container">
+
+      <!-- navigation bar -->
+      <div class="my-3">
+        <nav class="navbar navbar-light">
+          <div class="container">
+            <a class="navbar-brand" href="/">
+              <img src="{{url_for('static', filename='nmovies-logo.png')}}" alt="" width="155">
+            </a>
+            <div class="d-flex">
+              <button class="btn btn-light border-0 rounded-0 bg-glass fw-bold me-3 px-3 py-2" type="submit"
+                onclick="randomMovie(0, 220)"><i class="fa-solid fa-shuffle"></i> <span class="hidden">Surprise
+                  Me</span></button>
+            </div>
+          </div>
+        </nav>
+      </div>
+
+      <!-- header text -->
+      <div class="row mt-4 px-1">
+        <div class="col-lg-7 text-center text-white mx-auto">
+          <h1 class="display-3 fw-bold">Unlimited movies, TV shows and more.</h1>
+          <h3>Watch anywhere. Cancel anytime.</h3>
+
+          <!-- search bar with both the icons -->
+          <div class="wrapper" id="search-form">
+            <div class="search-input">
+              <input type="text" name="movie" class="movie" placeholder="Type to search.." id="autoComplete">
+              <div class="autocom-box">
+                <!-- here list are inserted from javascript -->
+              </div>
+              <div class="icon"><i class="fa-solid fa-magnifying-glass movie-button me-3" id="myBtn"></i></div>
+            </div>
+          </div>
+
+          <!-- in case if the movie is not in database -->
+          <div class="fail text-center">
+            <h2>No results found</h2>
+            <h4>Please try your search again with a different term</h4>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- loader animation -->
+  <div id="loader" class="text-center">
+  </div>
+
+  <div class="results">
+    <center>
+      <h2 id="name" class="text-uppercase"></h2>
+    </center>
+  </div>
+
+  <!-- section containig all the movie card list of different genres -->
+  <section>
+    <div class="container">
+
+      <!-- animated comedy movies row -->
+      <div class="row my-5">
+        <h4 class="text-white ">Animated Comedy Movies</h4>
+        <div class="nav-scroller">
+          <nav class="nav">
+            <ul class="movie-cards-list">
+
+              <li class="movie-cards-images-items">
+                <img src="https://www.themoviedb.org/t/p/original/7uoiKOEjxBBW0AgDGQWrlfGQ90w.jpg" alt="Modern Times"
+                  class="movie-cards-images">
+                <div class="cards-overlay" title="Modern Times" onclick="recommendcard(this)">
+                  <div class="cards-overlay-text">Watch Now</div>
+                </div>
+              </li>
+
+              <li class="movie-cards-images-items">
+                <img src="https://www.themoviedb.org/t/p/original/6t3YWl7hrr88lCEFlGVqW5yV99R.jpg" alt="Despicable Me 3"
+                  class="movie-cards-images">
+                <div class="cards-overlay" title="Despicable Me 3" onclick="recommendcard(this)">
+                  <div class="cards-overlay-text">Watch Now</div>
+                </div>
+              </li>
+
+              <li class="movie-cards-images-items">
+                <img src="https://www.themoviedb.org/t/p/original/q125RHUDgR4gjwh1QkfYuJLYkL.jpg" alt="Klaus"
+                  class="movie-cards-images">
+                <div class="cards-overlay" title="Klaus" onclick="recommendcard(this)">
+                  <div class="cards-overlay-text">Watch Now</div>
+                </div>
+              </li>
+
+              <li class="movie-cards-images-items">
+                <img src="https://www.themoviedb.org/t/p/original/2yYP0PQjG8zVqturh1BAqu2Tixl.jpg" alt="Shrek 2"
+                  class="movie-cards-images">
+                <div class="cards-overlay" title="Shrek 2" onclick="recommendcard(this)">
+                  <div class="cards-overlay-text">Watch Now</div>
+                </div>
+              </li>
+
+              <li class="movie-cards-images-items">
+                <img src="https://www.themoviedb.org/t/p/original/npHNjldbeTHdKKw28bJKs7lzqzj.jpg" alt="Ratatouille"
+                  class="movie-cards-images">
+                <div class="cards-overlay" title="Ratatouille" onclick="recommendcard(this)">
+                  <div class="cards-overlay-text">Watch Now</div>
+                </div>
+              </li>
+
+              <li class="movie-cards-images-items">
+                <img src="https://www.themoviedb.org/t/p/original/jw99zSvIZkvyMdMKQ7XCCN13Vsm.jpg"
+                  alt="Monsters University" class="movie-cards-images">
+                <div class="cards-overlay" title="Monsters University" onclick="recommendcard(this)">
+                  <div class="cards-overlay-text">Watch Now</div>
+                </div>
+              </li>
+
+              <li class="movie-cards-images-items">
+                <img src="https://www.themoviedb.org/t/p/original/sgheSKxZkttIe8ONsf2sWXPgip3.jpg" alt="Monsters, Inc."
+                  class="movie-cards-images">
+                <div class="cards-overlay" title="Monsters, Inc." onclick="recommendcard(this)">
+                  <div class="cards-overlay-text">Watch Now</div>
+                </div>
+              </li>
+
+              <li class="movie-cards-images-items">
+                <img src="https://www.themoviedb.org/t/p/original/gLhHHZUzeseRXShoDyC4VqLgsNv.jpg" alt="Ice Age"
+                  class="movie-cards-images">
+                <div class="cards-overlay" title="Ice Age" onclick="recommendcard(this)">
+                  <div class="cards-overlay-text">Watch Now</div>
+                </div>
+              </li>
+
+              <li class="movie-cards-images-items">
+                <img src="https://www.themoviedb.org/t/p/original/98zsG0FX7z6R4i5q0HONLM21dpt.jpg" alt="Scooby-Doo"
+                  class="movie-cards-images">
+                <div class="cards-overlay" title="Scooby-Doo" onclick="recommendcard(this)">
+                  <div class="cards-overlay-text">Watch Now</div>
+                </div>
+              </li>
+
+              <li class="movie-cards-images-items">
+                <img src="https://www.themoviedb.org/t/p/original/mi5VN4ww0JZgRFJIaPxxTGKjUg7.jpg"
+                  alt="The Art of Racing in the Rain" class="movie-cards-images">
+                <div class="cards-overlay" title="The Art of Racing in the Rain" onclick="recommendcard(this)">
+                  <div class="cards-overlay-text">Watch Now</div>
+                </div>
+              </li>
+
+            </ul>
+          </nav>
+        </div>
+      </div>
+
+      <!-- action movies row -->
+      <div class="row my-5">
+        <h4 class="text-white">Action Movies</h4>
+        <div class="nav-scroller">
+          <nav class="nav">
+            <ul class="movie-cards-list">
+              <li class="movie-cards-images-items">
+                <img src="https://www.themoviedb.org/t/p/original/iiZZdoQBEYBv6id8su7ImL0oCbD.jpg"
+                  alt="Spider-Man: Into the Spider-Verse" class="movie-cards-images">
+                <div class="cards-overlay" title="Spider-Man: Into the Spider-Verse" onclick="recommendcard(this)">
+                  <div class="cards-overlay-text">Watch Now</div>
+                </div>
+              </li>
+
+              <li class="movie-cards-images-items">
+                <img src="https://www.themoviedb.org/t/p/original/2Pf0Dtw6P9CWshK6GYVXmmq9NFS.jpg" alt="The Dark Knight"
+                  class="movie-cards-images">
+                <div class="cards-overlay" title="The Dark Knight" onclick="recommendcard(this)">
+                  <div class="cards-overlay-text">Watch Now</div>
+                </div>
+              </li>
+
+              <li class="movie-cards-images-items">
+                <img src="https://www.themoviedb.org/t/p/original/rCzpDGLbOoPwLjy3OAm5NUPOTrC.jpg"
+                  alt="The Lord of the Rings: The Return of the King" class="movie-cards-images">
+                <div class="cards-overlay" title="The Lord of the Rings: The Return of the King"
+                  onclick="recommendcard(this)">
+                  <div class="cards-overlay-text">Watch Now</div>
+                </div>
+              </li>
+
+              <li class="movie-cards-images-items">
+                <img src="https://www.themoviedb.org/t/p/original/u6TELOpe7GWFkU1izfJGNJk1O3O.jpg" alt="Top Gun"
+                  class="movie-cards-images">
+                <div class="cards-overlay" title="Top Gun" onclick="recommendcard(this)">
+                  <div class="cards-overlay-text">Watch Now</div>
+                </div>
+              </li>
+
+              <li class="movie-cards-images-items">
+                <img src="https://www.themoviedb.org/t/p/original/2YMnBRh8F6fDGCCEIPk9Hb0cEyB.jpg"
+                  alt="Pirates of the Caribbean: At World's End" class="movie-cards-images">
+                <div class="cards-overlay" title="Pirates of the Caribbean: At World's End"
+                  onclick="recommendcard(this)">
+                  <div class="cards-overlay-text">Watch Now</div>
+                </div>
+              </li>
+
+              <li class="movie-cards-images-items">
+                <img src="https://www.themoviedb.org/t/p/original/6oom5QYQ2yQTMJIbnvbkBL9cHo6.jpg"
+                  alt="The Lord of the Rings: The Fellowship of the Ring" class="movie-cards-images">
+                <div class="cards-overlay" title="The Lord of the Rings: The Fellowship of the Ring"
+                  onclick="recommendcard(this)">
+                  <div class="cards-overlay-text">Watch Now</div>
+                </div>
+              </li>
+
+              <li class="movie-cards-images-items">
+                <img src="https://www.themoviedb.org/t/p/original/rhr4y79GpxQF9IsfJItRXVaoGs4.jpg" alt="Jurassic World"
+                  class="movie-cards-images">
+                <div class="cards-overlay" title="Jurassic World" onclick="recommendcard(this)">
+                  <div class="cards-overlay-text">Watch Now</div>
+                </div>
+              </li>
+
+              <li class="movie-cards-images-items">
+                <img src="https://www.themoviedb.org/t/p/original/5VTN0pR8gcqV3EPUHHfMGnJYN9L.jpg"
+                  alt="The Lord of the Rings: The Two Towers" class="movie-cards-images">
+                <div class="cards-overlay" title="The Lord of the Rings: The Two Towers" onclick="recommendcard(this)">
+                  <div class="cards-overlay-text">Watch Now</div>
+                </div>
+              </li>
+
+              <li class="movie-cards-images-items">
+                <img src="https://www.themoviedb.org/t/p/original/edv5CZvWj09upOsy2Y6IwDhK8bt.jpg" alt="Inception"
+                  class="movie-cards-images">
+                <div class="cards-overlay" title="Inception" onclick="recommendcard(this)">
+                  <div class="cards-overlay-text">Watch Now</div>
+                </div>
+              </li>
+
+              <li class="movie-cards-images-items">
+                <img src="https://www.themoviedb.org/t/p/original/oihnoMVJHcdmUe0FbxWbwk1YbGZ.jpg"
+                  alt="AVENGERS: ENDGAME" class="movie-cards-images">
+                <div class="cards-overlay" title="AVENGERS: ENDGAME" onclick="recommendcard(this)">
+                  <div class="cards-overlay-text">Watch Now</div>
+                </div>
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- parallax effect with a backdrop -->
+    <div class="parallex-backdrop">
+      <div class="caption">
+        <div class="container">
+
+          <div class="row">
+
+            <div class="col-md-4 mb-2">
+              <h1 class="movie-title text-white">Raya and the Last Dragon</h1>
+              <div class="movie-details mb-3 text-white">
+                <ul class="movie-detail-items">
+                  <li class="movie-detail-list-items me-2"><i class="fa-brands fa-imdb"></i> 8.3</li>
+                  <li class="movie-detail-list-items me-2">1hr 47min</li>
+                  <li class="movie-detail-list-items me-2">2021 <i class="fa-solid fa-high-definition ml-2"></i></li>
+                </ul>
+              </div>
+              <p class="fw-bold fs-6 text-white">
+                Long ago, in the fantasy world of Kumandra, humans and dragons lived together in harmony. But when an
+                evil force threatened the land, the dragons sacrificed themselves to save...
+              </p>
+              <h5><b>Genre:</b> Animation, Family, Fantasy, Action, Adventure</h5>
+              <div class="mt-4">
+                <button type="button" class="btn btn-light bg-glass border-0 rounded-0 px-3 py-2 me-3 fw-bold"><i
+                    class="fa-duotone fa-circle-play me-1"></i> Play Now</button>
+
+                <button type="button" class="btn btn-light bg-glass border-0 rounded-0 ml-5 px-3 py-2 fw-bold"><i
+                    class="fa-duotone fa-arrow-down-to-line me-1"></i> Download</button>
+              </div>
+            </div>
+
+            <div class="col-md-8">
+              <img src="https://www.themoviedb.org/t/p/original/rcUcYzGGicDvhDs58uM44tJKB9F.jpg" alt="Raya"
+                style="width: 100%;" class="parallax-poster">
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+
+      <!-- horror movies row -->
+      <div class="row my-5">
+        <h4 class="text-white">Horror Movies</h4>
+        <div class="nav-scroller">
+          <nav class="nav">
+            <ul class="movie-cards-list">
+              <li class="movie-cards-images-items">
+                <img src="https://www.themoviedb.org/t/p/original/sFC1ElvoKGdHJIWRpNB3xWJ9lJA.jpg" alt="The Nun"
+                  class="movie-cards-images">
+                <div class="cards-overlay" title="The Nun" onclick="recommendcard(this)">
+                  <div class="cards-overlay-text">Watch Now</div>
+                </div>
+              </li>
+
+              <li class="movie-cards-images-items">
+                <img src="https://www.themoviedb.org/t/p/original/tmlDFIUpGRKiuWm9Ixc6CYDk4y0.jpg" alt="Insidious"
+                  class="movie-cards-images">
+                <div class="cards-overlay" title="Insidious" onclick="recommendcard(this)">
+                  <div class="cards-overlay-text">Watch Now</div>
+                </div>
+              </li>
+
+              <li class="movie-cards-images-items">
+                <img src="https://www.themoviedb.org/t/p/original/zfE0R94v1E8cuKAerbskfD3VfUt.jpg" alt="It Chapter Two"
+                  class="movie-cards-images">
+                <div class="cards-overlay" title="It Chapter Two" onclick="recommendcard(this)">
+                  <div class="cards-overlay-text">Watch Now</div>
+                </div>
+              </li>
+
+              <li class="movie-cards-images-items">
+                <img src="https://www.themoviedb.org/t/p/original/433jjDcHFEFa9S1eMgkVaK3W900.jpg" alt="Child's Play"
+                  class="movie-cards-images">
+                <div class="cards-overlay" title="Child's Play" onclick="recommendcard(this)">
+                  <div class="cards-overlay-text">Watch Now</div>
+                </div>
+              </li>
+
+              <li class="movie-cards-images-items">
+                <img src="https://www.themoviedb.org/t/p/original/xbSuFiJbbBWCkyCCKIMfuDCA4yV.jpg"
+                  alt="The Conjuring: The Devil Made Me Do It" class="movie-cards-images">
+                <div class="cards-overlay" title="The Conjuring: The Devil Made Me Do It" onclick="recommendcard(this)">
+                  <div class="cards-overlay-text">Watch Now</div>
+                </div>
+              </li>
+
+              <li class="movie-cards-images-items">
+                <img src="https://www.themoviedb.org/t/p/original/4ucLGcXVVSVnsfkGtbLY4XAius8.jpg" alt="The Exorcist"
+                  class="movie-cards-images">
+                <div class="cards-overlay" title="The Exorcist" onclick="recommendcard(this)">
+                  <div class="cards-overlay-text">Watch Now</div>
+                </div>
+              </li>
+
+              <li class="movie-cards-images-items">
+                <img src="https://www.themoviedb.org/t/p/original/4U1SBHmwHkNA0eHZ2n1CuiC1K1g.jpg" alt="Wrong Turn"
+                  class="movie-cards-images">
+                <div class="cards-overlay" title="Wrong Turn" onclick="recommendcard(this)">
+                  <div class="cards-overlay-text">Watch Now</div>
+                </div>
+              </li>
+
+              <li class="movie-cards-images-items">
+                <img src="https://www.themoviedb.org/t/p/original/qWsHMrbg9DsBY3bCMk9jyYCRVRs.jpg"
+                  alt="Annabelle Comes Home" class="movie-cards-images">
+                <div class="cards-overlay" title="Annabelle Comes Home" onclick="recommendcard(this)">
+                  <div class="cards-overlay-text">Watch Now</div>
+                </div>
+              </li>
+
+              <li class="movie-cards-images-items">
+                <img src="https://www.themoviedb.org/t/p/original/5vxXrr1MqGsT4NNeRITpfDnl4Rq.jpg"
+                  alt="The Final Destination" class="movie-cards-images">
+                <div class="cards-overlay" title="The Final Destination" onclick="recommendcard(this)">
+                  <div class="cards-overlay-text">Watch Now</div>
+                </div>
+              </li>
+
+              <li class="movie-cards-images-items">
+                <img src="https://www.themoviedb.org/t/p/original/4gTVmM9Y70JCQ2lzDvI9A6Mabf5.jpg" alt="Psycho"
+                  class="movie-cards-images">
+                <div class="cards-overlay" title="Psycho" onclick="recommendcard(this)">
+                  <div class="cards-overlay-text">Watch Now</div>
+                </div>
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+
+      <!-- romantic movies row -->
+      <div class="row my-5">
+        <h4 class="text-white">Romantic Movies</h4>
+        <div class="nav-scroller">
+          <nav class="nav">
+            <ul class="movie-cards-list">
+              <li class="movie-cards-images-items">
+                <img src="https://www.themoviedb.org/t/p/original/Ia3dzj5LnCj1ZBdlVeJrbKJQxG.jpg" alt="Me Before You"
+                  class="movie-cards-images">
+                <div class="cards-overlay" title="Me Before You" onclick="recommendcard(this)">
+                  <div class="cards-overlay-text">Watch Now</div>
+                </div>
+              </li>
+
+              <li class="movie-cards-images-items">
+                <img src="https://www.themoviedb.org/t/p/original/A3IDomVA35vdeartN1ZUC8k4fQL.jpg" alt="Forever My Girl"
+                  class="movie-cards-images">
+                <div class="cards-overlay" title="Forever My Girl" onclick="recommendcard(this)">
+                  <div class="cards-overlay-text">Watch Now</div>
+                </div>
+              </li>
+
+              <li class="movie-cards-images-items">
+                <img src="https://www.themoviedb.org/t/p/original/9ZedQHPQVveaIYmDSTazhT3y273.jpg"
+                  alt="Fifty Shades Freed" class="movie-cards-images">
+                <div class="cards-overlay" title="Fifty Shades Freed" onclick="recommendcard(this)">
+                  <div class="cards-overlay-text">Watch Now</div>
+                </div>
+              </li>
+
+              <li class="movie-cards-images-items">
+                <img src="https://www.themoviedb.org/t/p/original/9XnA5B8mTDpKkm6BdFcPWTpaSuu.jpg" alt="Corpse Bride"
+                  class="movie-cards-images">
+                <div class="cards-overlay" title="Corpse Bride" onclick="recommendcard(this)">
+                  <div class="cards-overlay-text">Watch Now</div>
+                </div>
+              </li>
+
+              <li class="movie-cards-images-items">
+                <img src="https://www.themoviedb.org/t/p/original/lCcfVuXOYuopKbtKhHmdU1s0epE.jpg"
+                  alt="The Twilight Saga: Eclipse" class="movie-cards-images">
+                <div class="cards-overlay" title="The Twilight Saga: Eclipse" onclick="recommendcard(this)">
+                  <div class="cards-overlay-text">Watch Now</div>
+                </div>
+              </li>
+
+              <li class="movie-cards-images-items">
+                <img src="https://www.themoviedb.org/t/p/original/kreTuJBkUjVWePRfhHZuYfhNE1T.jpg" alt="Five Feet Apart"
+                  class="movie-cards-images">
+                <div class="cards-overlay" title="Five Feet Apart" onclick="recommendcard(this)">
+                  <div class="cards-overlay-text">Watch Now</div>
+                </div>
+              </li>
+
+              <li class="movie-cards-images-items">
+                <img src="https://www.themoviedb.org/t/p/original/4s6fYhtYakH21LHtwBUEMEBuCZG.jpg"
+                  alt="Beauty and the Beast" class="movie-cards-images">
+                <div class="cards-overlay" title="Beauty and the Beast" onclick="recommendcard(this)">
+                  <div class="cards-overlay-text">Watch Now</div>
+                </div>
+              </li>
+
+              <li class="movie-cards-images-items">
+                <img src="https://www.themoviedb.org/t/p/original/9xjZS2rlVxm8SFx8kPC3aIGCOYQ.jpg" alt="Titanic"
+                  class="movie-cards-images">
+                <div class="cards-overlay" title="Titanic" onclick="recommendcard(this)">
+                  <div class="cards-overlay-text">Watch Now</div>
+                </div>
+              </li>
+
+              <li class="movie-cards-images-items">
+                <img src="https://www.themoviedb.org/t/p/original/mMprGx972sf1TCI8gZUIVkicSHc.jpg" alt="American Pie"
+                  class="movie-cards-images">
+                <div class="cards-overlay" title="American Pie" onclick="recommendcard(this)">
+                  <div class="cards-overlay-text">Watch Now</div>
+                </div>
+              </li>
+
+              <li class="movie-cards-images-items">
+                <img src="https://www.themoviedb.org/t/p/original/iNZdSIfhSCMtRILDNyhLn8UKeSG.jpg" alt="13 Going on 30"
+                  class="movie-cards-images">
+                <div class="cards-overlay" title="13 Going on 30" onclick="recommendcard(this)">
+                  <div class="cards-overlay-text">Watch Now</div>
+                </div>
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- footer -->
+  <footer class="footer">
+    <div class="container pt-5 pb-3">
+      <div class="row">
+        <div class="col-lg-6 col-md-12 col-sm-12 my-3">
+          <img src="{{url_for('static', filename='nmovies-logo.png')}}" alt="" class="company-logo">
+          <p>NMovies is a streaming service that offers a wide variety of award-winning TV shows, movies,
+            anime, documentaries and more – on thousands of <br> internet-connected devices.
+          </p>
+          <p>There's always something new to discover, and new TV shows and movies are added
+            every week!
+          </p>
+        </div>
+        <div class="col-lg-3 col-md-16 col-sm-12 my-3">
+          <h4 class="text-color--red">Quick links</h4>
+          <p><a href="">Only on NMovies</a></p>
+          <p><a href="">Help Centre</a></p>
+          <p><a href="">Ways to Watch</a></p>
+          <p><a href="">Terms of Use</a></p>
+        </div>
+        <div class="col-lg-3 col-md-16 col-sm-12 my-3">
+          <h4 class="text-color--red">Contact Us</h4>
+          <p><i class="fa-solid fa-location-dot me-3"></i> 2130 Fulton Street,
+            San Diego, CA 94117-1080 USA</p>
+          <p><i class="fa fa-envelope me-3"></i> help.desk@NMovies.com</p>
+          <p><i class="fa fa-phone me-3"></i> 1-800-1234-567</p>
+        </div>
+      </div>
+      <div class="row py-2">
+        <div class="col-lg-6">
+          <p>Copyright © 2022 <b>NMovies India</b>. All Rights Reserved</p>
+        </div>
+        <div class="col-lg-6 text-lg-end">
+          <p>Desinged By <a href="https://github.com/kshitiz-patel" target="_blank" class="text-color--red">
+              Kshitiz Patel</a>
+          </p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- different javascripts for search bar, recommendation & bootstrap 5 also -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+  <script type="text/javascript" src="{{url_for('static', filename='searchWrapper.js')}}"></script>
+
+  <script type="text/javascript" src="{{url_for('static', filename='recommend.js')}}"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
+    integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous">
+  </script>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
+    integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous">
+  </script>
+
+</body>
+
+</html>
