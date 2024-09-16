@@ -13,10 +13,9 @@ import requests
 filename = 'nlp_model.pkl'
 clf = pickle.load(open(filename, 'rb'))
 vectorizer = pickle.load(open('tranform.pkl', 'rb'))
-
+data = pd.read_csv('main_data.csv')
 
 def create_similarity():
-    data = pd.read_csv('main_data.csv')
     # creating a count matrix
     cv = CountVectorizer()
     count_matrix = cv.fit_transform(data['comb'])
@@ -55,7 +54,7 @@ def convert_to_list(my_list):
 
 
 def get_suggestions():
-    data = pd.read_csv('main_data.csv')
+    # data = pd.read_csv('main_data.csv')
     return list(data['movie_title'].str.capitalize())
 
 
