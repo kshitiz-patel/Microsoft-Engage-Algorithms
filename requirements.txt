@@ -14,7 +14,7 @@ jsonschema==3.2.0
 lxml==4.9.2
 MarkupSafe==2.0.1
 nltk==3.5
-numpy==1.24.1
+numpy
 pandas==1.5.3
 pickleshare==0.7.5
 pyrsistent==0.19.3
